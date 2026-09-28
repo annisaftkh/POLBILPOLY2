@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>POLBILPOLY</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <h1>🎲 POLBILPOLY 🎲</h1>
+
+    <p>
+        Permainan Pola Bilangan
+    </p>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =========================
+     BAGIAN PAPAN
+========================= -->
+
+<section class="game-section">
+
+
+    <div class="board">
+
+
+        <!-- BARIS ATAS -->
+
+        <div class="cell start"
+             data-index="0">
+
+            🏁
+            <small>START</small>
+
+        </div>
+
+
+        <div class="cell easy"
+             data-index="1">
+
+            E
+
+        </div>
+
+
+        <div class="cell medium"
+             data-index="2">
+
+            M
+
+        </div>
+
+
+        <div class="cell hard"
+             data-index="3">
+
+            H
+
+        </div>
+
+
+        <div class="cell bonus"
+             data-index="4">
+
+            🎁
+            <small>BONUS</small>
+
+        </div>
+
+
+        <div class="cell easy"
+             data-index="5">
+
+            E
+
+        </div>
+
+
+
+        <!-- SISI KANAN -->
+
+        <div class="cell medium"
+             data-index="6">
+
+            M
+
+        </div>
+
+
+        <div class="cell hard"
+             data-index="7">
+
+            H
+
+        </div>
+
+
+        <div class="cell bonus"
+             data-index="8">
+
+            🎁
+
+        </div>
+
+
+        <div class="cell easy"
+             data-index="9">
+
+            E
+
+        </div>
+
+
+
+        <!-- BAWAH -->
+
+        <div class="cell start"
+             data-index="10">
+
+            🏁
+            <small>START</small>
+
+        </div>
+
+
+        <div class="cell hard"
+             data-index="11">
+
+            H
+
+        </div>
+
+
+        <div class="cell medium"
+             data-index="12">
+
+            M
+
+        </div>
+
+
+        <div class="cell easy"
+             data-index="13">
+
+            E
+
+        </div>
+
+
+        <div class="cell bonus"
+             data-index="14">
+
+            🎁
+
+        </div>
+
+
+        <div class="cell medium"
+             data-index="15">
+
+            M
+
+        </div>
+
+
+
+        <!-- SISI KIRI -->
+
+        <div class="cell hard"
+             data-index="16">
+
+            H
+
+        </div>
+
+
+        <div class="cell easy"
+             data-index="17">
+
+            E
+
+        </div>
+
+
+        <div class="cell medium"
+             data-index="18">
+
+            M
+
+        </div>
+
+
+        <div class="cell hard"
+             data-index="19">
+
+            H
+
+        </div>
+
+
+
+        <!-- =========================
+             TENGAH PAPAN
+        ========================== -->
+
+        <div class="center">
+
+
+            <h2>
+                POLBILPOLY
+            </h2>
+
+
+            <p>
+                POLA BILANGAN
+            </p>
+
+
+            <div class="qr-area">
+
+
+                <button
+                    class="qr easy-qr"
+                    onclick="scanQR('E')">
+
+                    E
+
+                </button>
+
+
+                <button
+                    class="qr medium-qr"
+                    onclick="scanQR('M')">
+
+                    M
+
+                </button>
+
+
+                <button
+                    class="qr hard-qr"
+                    onclick="scanQR('H')">
+
+                    H
+
+                </button>
+
+
+            </div>
+
+
+            <p class="qr-text">
+
+                📱 QR SOAL
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     PANEL KONTROL
+========================= -->
+
+<aside>
+
+
+    <!-- GILIRAN -->
+
+    <div class="panel">
+
+        <h2>
+            🎮 Giliran
+        </h2>
+
+        <div
+            id="turn"
+            class="turn">
+
+            Kelompok 1
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DADU -->
+
+    <div class="panel">
+
+        <h2>
+            🎲 Dadu
+        </h2>
+
+
+        <div
+            id="dice"
+            class="dice">
+
+            ⚀
+
+        </div>
+
+
+        <button
+            class="roll-button"
+            onclick="rollDice()">
+
+            🎲 Lempar Dadu
+
+        </button>
+
+    </div>
+
+
+
+    <!-- SKOR -->
+
+    <div class="panel">
+
+        <h2>
+            📊 Skor
+        </h2>
+
+
+        <div class="team team1">
+
+            <b>🔴 Kelompok 1</b>
+
+            <span>
+                Poin:
+                <strong id="score1">
+                    150
+                </strong>
+            </span>
+
+            <span>
+                Wilayah:
+                <strong id="area1">
+                    0
+                </strong>
+            </span>
+
+            <span>
+                🛡️
+                <strong id="shield1">
+                    0
+                </strong>
+            </span>
+
+        </div>
+
+
+        <div class="team team2">
+
+            <b>🔵 Kelompok 2</b>
+
+            <span>
+                Poin:
+                <strong id="score2">
+                    150
+                </strong>
+            </span>
+
+            <span>
+                Wilayah:
+                <strong id="area2">
+                    0
+                </strong>
+            </span>
+
+            <span>
+                🛡️
+                <strong id="shield2">
+                    0
+                </strong>
+            </span>
+
+        </div>
+
+
+        <div class="team team3">
+
+            <b>🟢 Kelompok 3</b>
+
+            <span>
+                Poin:
+                <strong id="score3">
+                    150
+                </strong>
+            </span>
+
+            <span>
+                Wilayah:
+                <strong id="area3">
+                    0
+                </strong>
+            </span>
+
+            <span>
+                🛡️
+                <strong id="shield3">
+                    0
+                </strong>
+            </span>
+
+        </div>
+
+
+        <div class="team team4">
+
+            <b>🟣 Kelompok 4</b>
+
+            <span>
+                Poin:
+                <strong id="score4">
+                    150
+                </strong>
+            </span>
+
+            <span>
+                Wilayah:
+                <strong id="area4">
+                    0
+                </strong>
+            </span>
+
+            <span>
+                🛡️
+                <strong id="shield4">
+                    0
+                </strong>
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- BONUS -->
+
+    <div class="panel">
+
+        <h2>
+            🎁 Bonus Card
+        </h2>
+
+        <div id="bonus">
+
+            Belum mendapatkan kartu.
+
+        </div>
+
+    </div>
+
+
+
+    <!-- LOG -->
+
+    <div class="panel">
+
+        <h2>
+            📜 Log Permainan
+        </h2>
+
+        <div
+            id="log"
+            class="log">
+
+        </div>
+
+    </div>
+
+
+</aside>
+
+</main>
+
+
+
+<!-- =========================
+     MODAL SOAL
+========================= -->
+
+<div
+    id="questionModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <h2 id="questionTitle">
+            Soal
+        </h2>
+
+
+        <div class="timer">
+
+            ⏱️
+            <span id="timer">
+                30
+            </span>
+
+        </div>
+
+
+        <div
+            id="question"
+            class="question">
+
+        </div>
+
+
+        <input
+            id="answer"
+            type="text"
+            placeholder="Masukkan jawaban">
+
+
+        <button
+            onclick="submitAnswer()"
+            class="answer-button">
+
+            ✅ Jawab
+
+        </button>
+
+
+        <button
+            onclick="closeQuestion()"
+            class="close-button">
+
+            Tutup
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
